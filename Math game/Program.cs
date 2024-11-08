@@ -28,20 +28,26 @@ class Program
 {
     static void Main(string[] args)
     {
+        Random rnd = new Random();
         char choice = ' ';
         int number1 = 0;
         int number2 = 0;
         int result = 0;
+        int answer = 0;
+        int point = 0;
+        
 
         List<Transaction> transactionHistory = new List<Transaction>();
 
-        string text = "=-=-=-WELCOME TO CALCULATOR 101-=-=-=";
+        string text = "=-=-=-WELCOME TO MATH GAME 101-=-=-=";
         Console.Write(new string(' ', (Console.WindowWidth - text.Length) / 2));
         Console.WriteLine(text);
 
-        text = "The calculator can perform Additions, Subtractions, Divisons and Multiplications";
+        text = "The calculator can perform Additions, Subtractions, Divisons and Multiplications, CAN YOU?";
         Console.Write(new string(' ', (Console.WindowWidth - text.Length) / 2));
         Console.WriteLine(text);
+
+        Console.WriteLine("\n\nFor every correct answer you get 1 point, For wrong one you lose 1 point");
 
         Console.WriteLine("\n\n\nPress Enter key to continue");
         Console.ReadLine();
@@ -99,15 +105,13 @@ class Program
                 }
                 Console.Clear();
 
-                Console.Write("Enter number 1 to perform operation on :  ");
-                number1 = Convert.ToInt32(Console.ReadLine());
-                Thread.Sleep(250);
-                Console.WriteLine($"Entered Number 1: {number1}");
+                number1 = rnd.Next(1, 100);
+                number2 = rnd.Next(1, 100);
 
-                Console.Write("\n\nEnter number 2 to perform operation on :  ");
-                number2 = Convert.ToInt32(Console.ReadLine());
-                Thread.Sleep(250);
-                Console.WriteLine($"Entered Number 2: {number2}");
+
+                Console.WriteLine($"Perform operation on numbers {number1} and {number2}");
+
+
             }
             else
             {
@@ -123,9 +127,23 @@ class Program
             switch (choice)
             {
                 case '+':
+                    
                     result = number1 + number2;
                     Thread.Sleep(250);
-                    Console.WriteLine($"\n\nSum of number1 (\"{number1}\") and number2 (\"{number2}\") = {result}");
+                    Console.Write("\n\nEnter answer :  ");
+                    answer = Convert.ToInt32(Console.ReadLine());
+                    Thread.Sleep(250);
+         
+                    if (result == answer)
+                    {
+                        Console.WriteLine("\n\nCorrecr Answer!");
+                        point++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\n\nWrong Answer, Correct answer is {result}");
+                        point--;
+                    }
                     break;
 
                 case '-':
