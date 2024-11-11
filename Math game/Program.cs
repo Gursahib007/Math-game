@@ -107,11 +107,6 @@ class Program
 
                 number1 = rnd.Next(1, 100);
                 number2 = rnd.Next(1, 100);
-
-
-                Console.WriteLine($"Perform operation on numbers {number1} and {number2}");
-
-
             }
             else
             {
@@ -127,7 +122,7 @@ class Program
             switch (choice)
             {
                 case '+':
-                    
+                    Console.WriteLine($"Perform operation on numbers {number1} and {number2}");
                     result = number1 + number2;
                     Thread.Sleep(250);
                     Console.Write("\n\nEnter answer :  ");
@@ -147,28 +142,63 @@ class Program
                     break;
 
                 case '-':
+                    Console.WriteLine($"Perform operation on numbers {number1} and {number2}");
                     result = number1 - number2;
                     Thread.Sleep(250);
-                    Console.WriteLine($"\n\nDifference of number1 (\"{number1}\") and number2 (\"{number2}\") = {result}");
-                    break;
-
-                case '*':
-                    result = number1 * number2;
+                    Console.Write("\n\nEnter answer :  ");
+                    answer = Convert.ToInt32(Console.ReadLine());
                     Thread.Sleep(250);
-                    Console.WriteLine($"\n\nProduct of number1 (\"{number1}\") and number2 (\"{number2}\") = {result}");
-                    break;
 
-                case '/':
-                    if (number2 != 0)
+                    if (result == answer)
                     {
-                        result = number1 / number2;
-                        Thread.Sleep(250);
-                        Console.WriteLine($"\n\nQuotient of number1 (\"{number1}\") and number2 (\"{number2}\") = {result}");
+                        Console.WriteLine("\n\nCorrecr Answer!");
+                        point++;
                     }
                     else
                     {
-                        Console.WriteLine("Error: Division by zero is not allowed.");
-                        continue;
+                        Console.WriteLine($"\n\nWrong Answer, Correct answer is {result}");
+                        point--;
+                    }
+                    break;
+
+                case '*':
+                    Console.WriteLine($"Perform operation on numbers {number1} and {number2}");
+                    result = number1 * number2;
+                    Thread.Sleep(250);
+                    Console.Write("\n\nEnter answer :  ");
+                    answer = Convert.ToInt32(Console.ReadLine());
+                    Thread.Sleep(250);
+
+                    if (result == answer)
+                    {
+                        Console.WriteLine("\n\nCorrecr Answer!");
+                        point++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\n\nWrong Answer, Correct answer is {result}");
+                        point--;
+                    }
+                    break;
+
+                case '/':
+
+                    Console.WriteLine($"Perform operation on numbers {number1} and {number2}");
+                    result = number1 + number2;
+                    Thread.Sleep(250);
+                    Console.Write("\n\nEnter answer :  ");
+                    answer = Convert.ToInt32(Console.ReadLine());
+                    Thread.Sleep(250);
+
+                    if (result == answer)
+                    {
+                        Console.WriteLine("\n\nCorrecr Answer!");
+                        point++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\n\nWrong Answer, Correct answer is {result}");
+                        point--;
                     }
                     break;
 
@@ -177,12 +207,13 @@ class Program
                     break;
 
                 default:
+                    choice = 'e';
                     Console.WriteLine("Invalid Choice");
                     break;
             }
 
             // Store the transaction
-            if (choice != '5' && choice != '0')
+            if (choice != '5' && choice != '0' && choice != 'e')
             {
                 Transaction newTransaction = new Transaction(number1, number2, choice, result);
                 transactionHistory.Add(newTransaction);
